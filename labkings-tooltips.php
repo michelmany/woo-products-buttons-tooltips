@@ -3,7 +3,7 @@
 /**
  * Plugin Name: LabKings Tooltips
  * Description: Add tooltips with price to products buttons
- * Version: 1.0.3
+ * Version: 1.1.0
  * Author: Michel Many
  * Author URI: https://michelmany.com
  */

@@ -48,3 +48,8 @@
     pointer-events: auto;
 }
 
+.labkings-formatted-price {
+    color:white;
+    font-weight:600;
+}
+
