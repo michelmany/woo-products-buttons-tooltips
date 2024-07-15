@@ -11,7 +11,7 @@
     left: 50%;
     transform: translateX(-50%);
     font-size: 14px;
-    background: black;
+    background: #E94E1B;
     color: #ffffff;
     padding: 5px 8px;
     border-radius: 5px;
@@ -33,7 +33,7 @@
     content: "";
     height: 8px;
     width: 8px;
-    background: black;
+    background: #E94E1B;
     bottom: -3px;
     left: 50%;
     transform: translate(-50%) rotate(45deg);
