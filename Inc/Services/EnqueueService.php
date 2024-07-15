@@ -39,7 +39,7 @@ class EnqueueService {
 
 		wp_localize_script( 'labkings-tooltips-scripts', 'ajax_var', array(
 			'url'    => admin_url( 'admin-ajax.php' ),
-			'nonce'  => wp_create_nonce( 'my-ajax-nonce' ),
+			'nonce'  => wp_create_nonce( 'labkings-tooltips-ajax-nonce' ),
 			'action' => 'get_wc_products',
 		) );
 	}

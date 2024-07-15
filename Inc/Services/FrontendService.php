@@ -30,21 +30,68 @@ class FrontendService {
 	 */
 	public function get_wc_products(): void {
 
-		if ( ! isset( $_POST['sku'] ) ) {
+		check_ajax_referer('labkings-tooltips-ajax-nonce', 'nonce');
+
+		$page = isset($_POST['page']) ? (int) $_POST['page'] : 1;
+		$products_per_page = 100; // Number of products to load per request
+		$offset = ($page - 1) * $products_per_page;
+
+	    if (!isset($_POST['skus'])) {
+	        error_log('No SKUs provided in the AJAX call.');
+	        wp_send_json_error('No SKUs provided.');
+	        return;
+	    }
+
+		$skus = $_POST['skus']; // Get the SKUs from the AJAX call
+
+		$products = array();
+		foreach ($skus as $sku) {
+			$args = array(
+//				'limit' => $products_per_page,
+//				'offset' => $offset,
+				'sku' => $sku,
+				'status' => 'publish',
+			);
+			$product = wc_get_products($args);
+			if (!empty($product)) {
+				$products[] = $product[0];
+			} else {
+				error_log('No product found for SKU: ' . $sku);
+			}
+		}
+
+		if (empty($products)) {
+			error_log('No products found for provided SKUs.');
+			wp_send_json_error('No products found.');
 			return;
 		}
 
-		$sku = $_POST['sku'];
-		$id = wc_get_product_id_by_sku( $sku );
+		$product_details = array();
+		foreach ($products as $product) {
+			$product_details[$product->get_sku()] = array(
+				'price' => wc_price($product->get_price()),
+			);
+		}
 
-		if ( ! $id ) {
+		if (empty($product_details)) {
+			error_log('No product details found.');
+			wp_send_json_error('No product details found.');
 			return;
 		}
 
-		$product = wc_get_product( $id );
-		$price = $product->get_price();
-		echo wc_price($price);
-		die();
+		wp_send_json_success($product_details);
+//
+//		$sku = $_POST['sku'];
+//		$id = wc_get_product_id_by_sku( $sku );
+//
+//		if ( ! $id ) {
+//			return;
+//		}
+//
+//		$product = wc_get_product( $id );
+//		$price = $product->get_price();
+//		echo wc_price($price);
+//		die();
 
 //		$args = array(
 //			'limit'   => 100,
