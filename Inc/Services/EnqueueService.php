@@ -24,7 +24,7 @@ class EnqueueService {
 		wp_enqueue_script(
 			'labkings-tooltips-axios',
 			'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
-			array( ),
+			array(),
 			LABKINGS_TOOLTIPS_VERSION,
 			true
 		);
@@ -38,6 +38,7 @@ class EnqueueService {
 		);
 
 		wp_localize_script( 'labkings-tooltips-scripts', 'ajax_var', array(
+			'home'   => home_url(),
 			'url'    => admin_url( 'admin-ajax.php' ),
 			'nonce'  => wp_create_nonce( 'labkings-tooltips-ajax-nonce' ),
 			'action' => 'get_wc_products',

@@ -24,7 +24,7 @@ class LabKingsTooltipsServicesContainer {
 	 *
 	 * @return mixed
 	 */
-	public function getService( $name ) {
+	public function getService( $name ): mixed {
 		return $this->services[ $name ];
 	}
 
