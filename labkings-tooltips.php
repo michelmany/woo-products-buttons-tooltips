@@ -3,12 +3,12 @@
 /**
  * Plugin Name: LabKings Tooltips
  * Description: Add tooltips with price to products buttons
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Michel Many
  * Author URI: https://michelmany.com
  */
 
-define( 'LABKINGS_TOOLTIPS_VERSION', '1.0.2' );
+define( 'LABKINGS_TOOLTIPS_VERSION', '1.1.1' );
 
 require_once plugin_dir_path( __FILE__ ) . 'Inc/LabKingsTooltipsServicesContainer.php';
 
