@@ -2,16 +2,35 @@
 
     $(document).ready(function() {
         let sku;
-        let anchorSelector;
         let currentPage = 1;
         let isLoading = false;
+
+        const pagesSkuInTheButton = [
+            'page-id-20403',
+            'page-id-20423',
+            'page-id-20307',
+            'page-id-20378',
+            'page-id-20447',
+            'page-id-24690',
+            'page-id-20403',
+            'page-id-20392',
+            'page-id-20304',
+            'page-id-20293',
+            'page-id-19706',
+        ];
+
+        const anchorSelector = `
+                .apply-labkings-tooltips .wpb_text_column table td a,
+                .apply-labkings-tooltips .wpb_single_image + .wpb_text_column table td + td a,
+                .apply-labkings-tooltips .wpb_single_image + .wpb_text_column table td a
+            `;
 
         function loadProductDetails(page, sku, elem = null) {
             if (
                 $(elem).hasClass('tooltip') && $(elem).hasClass('has-price')
                 || $(elem).hasClass('tooltip') && $(elem).hasClass('has-error'))
             {
-                console.log('has price');
+                // console.log('has price');
                 isLoading = false;
                 return;
             }
@@ -22,7 +41,7 @@
                 $(elem).html('Loading price...');
             }
 
-            console.log(sku);
+            // console.log(sku);
 
             $.ajax({
                 method: 'GET',
@@ -45,25 +64,9 @@
             });
         }
 
-        const pagesSkuInTheButton = [
-            'page-id-20403',
-            'page-id-20423',
-            'page-id-20307',
-            'page-id-20378',
-            'page-id-20447',
-            'page-id-24690',
-            'page-id-20403',
-            'page-id-20392',
-        ];
-
         let isPageWithSkuInTheButton = pagesSkuInTheButton.some(function(className) {
             return $('body').hasClass(className);
         });
-
-        let regularPagesSelector = '.apply-labkings-tooltips .wpb_text_column table td a';
-        let pagesWithSkuSelector = '.apply-labkings-tooltips .wpb_single_image + .wpb_text_column table td + td a';
-
-        anchorSelector = isPageWithSkuInTheButton ? regularPagesSelector : pagesWithSkuSelector;
 
         $(anchorSelector).each(function() {
             $(this).prepend('<div class="tooltip">Loading price...</div>');
