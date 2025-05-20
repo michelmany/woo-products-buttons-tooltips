@@ -1,0 +1,26 @@
+{
+  "name": "michelmany/labkings-tooltips",
+  "description": "Add tooltips with price to products buttons",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Michel Many",
+      "email": "hello@michelmany.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "htmlburger/carbon-fields": "^3.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Inc\\": "Inc/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
+  }
+}

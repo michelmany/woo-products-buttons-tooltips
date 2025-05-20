@@ -21,6 +21,7 @@
 
         const anchorSelector = `
                 .apply-labkings-tooltips .wpb_text_column table td a,
+                .apply-labkings-tooltips .wpb_text_column table td a button,
                 .apply-labkings-tooltips .wpb_single_image + .wpb_text_column table td + td a,
                 .apply-labkings-tooltips .wpb_single_image + .wpb_text_column table td a
             `;
